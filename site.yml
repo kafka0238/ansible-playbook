@@ -98,10 +98,18 @@
         extra_opts: [--strip-components=1]
         creates: "{{ kibana_home }}/bin/kibana"
       tags:
-        - kiabna
+        - kibana
     - name: Set environment Kibana
       become: true
       template:
-        src: templates/elk.sh.j2
+        src: templates/kibana.sh.j2
         dest: /etc/profile.d/kibana.sh
-      tags: kiabna
+      tags: kibana
+    - name: Set config Kibana
+      become: true
+      template:
+        src: templates/kibana.yml.j2
+        dest: "{{ kibana_home }}/config/kibana.yml"
+      tags:
+        - kibana
+        - config

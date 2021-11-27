@@ -1,3 +1,19 @@
 ---
 kibana_version: "7.15.2"
-kibana_home: "/opt/kibana/{{ elastic_version }}"
+kibana_home: "/opt/kibana/{{ kibana_version }}"
+server_port: 5601
+server_host: "localhost"
+server_maxPayload: 1048576
+elasticsearch_hosts: "http://192.168.0.104:9200"
+kibana_defaultAppId: "netology"
+elasticsearch_pingTimeout: 1500
+elasticsearch_requestTimeout: 30000
+elasticsearch_shardTimeout: 30000
+elasticsearch_logQueries: true
+logging_dest: "stdout"
+logging_silent: false
+logging_quiet: false
+logging_verbose: false
+ops_interval: 5000
+i18n_locale: "en"
+
