@@ -10,6 +10,7 @@
 1. java
 2. elastic
 3. kibana
+3. config
 
 ### Параметры плейбука:
 1. java_jdk_version

@@ -9,6 +9,7 @@
     - name: Upload .tar.gz file containing binaries from local storage
       copy:
         src: "{{ java_oracle_jdk_package }}"
+        mode: 0644
         dest: "/tmp/jdk-{{ java_jdk_version }}.tar.gz"
       register: download_java_binaries
       until: download_java_binaries is succeeded
@@ -17,6 +18,7 @@
       become: true
       file:
         state: directory
+        mode: 0644
         path: "{{ java_home }}"
       tags: java
     - name: Extract java in the installation directory
@@ -33,6 +35,7 @@
       become: true
       template:
         src: jdk.sh.j2
+        mode: 0644
         dest: /etc/profile.d/jdk.sh
       tags: java
 - name: Install Elasticsearch
@@ -52,6 +55,7 @@
     - name: Create directrory for Elasticsearch
       file:
         state: directory
+        mode: 0644
         path: "{{ elastic_home }}"
       tags: elastic
     - name: Extract Elasticsearch in the installation directory
@@ -68,6 +72,7 @@
       become: true
       template:
         src: templates/elk.sh.j2
+        mode: 0644
         dest: /etc/profile.d/elk.sh
       tags: elastic
 - name: Install Kibana
@@ -87,6 +92,7 @@
     - name: Create directrory for Kibana
       file:
         state: directory
+        mode: 0644
         path: "{{ kibana_home }}"
       tags: kibana
     - name: Extract Kibana in the installation directory
@@ -103,12 +109,14 @@
       become: true
       template:
         src: templates/kibana.sh.j2
+        mode: 0644
         dest: /etc/profile.d/kibana.sh
       tags: kibana
     - name: Set config Kibana
       become: true
       template:
         src: templates/kibana.yml.j2
+        mode: 0644
         dest: "{{ kibana_home }}/config/kibana.yml"
       tags:
         - kibana
